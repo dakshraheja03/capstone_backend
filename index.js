@@ -5,6 +5,7 @@ import morgan from "morgan";
 import connectDB from "./config/db.js";
 import authRoute from "../backend/routes/authRoute.js";
 import studentRoute from "../backend/routes/studentRoute.js"
+import prescriptionRoute from "../backend/routes/prescriptionRoute.js"
 import cors from "cors";
 
 //configure env
@@ -24,6 +25,7 @@ app.use(morgan("dev"));
 //routes
 app.use("/api/auth", authRoute);
 app.use("/api/student",studentRoute);
+app.use("/api/prescription",prescriptionRoute)
 //rest api
 app.get("/", (req, res) => {
   res.send("<h1>Welcome to our Capstone Project</h1>");

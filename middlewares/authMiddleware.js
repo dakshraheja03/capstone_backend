@@ -24,10 +24,12 @@ export const requiresDoctor = async (req, res, next) => {
   try {
       const token = req.headers.authorization;
       const decoded = JWT.verify(token, process.env.JWT_SECRET);
-      if (decoded.role === 1) {
+      const user = await userModel.findById(decoded._id);
+      if (user.role == 1) {
           req.doctor = decoded;
           next();
       } else {
+        console.log("here")
           res.status(403).json({ message: 'Forbidden Access' });
       }
   } catch (error) {
